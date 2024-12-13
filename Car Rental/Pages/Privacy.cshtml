@@ -1,20 +1,21 @@
 ﻿@page
-@model ContactModel
+@model Car_Rental.Pages.PrivacyModel
 @{
-    ViewData["Title"] = "Contact Us - Car Rental";
+    ViewData["Title"] = "Privacy Policy - Car Rental";
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="css/index.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-black">
         <div class="container">
@@ -46,98 +47,77 @@
             </div>
         </div>
     </nav>
-   
 
-<div class="container my-5">
-    <div class="row g-4">
-      
-        <div class="col-md-6">
-            <h1 class="mb-3">Let's Collaborate!</h1>
-            <p>Our team is always available to assist you. Fill in the form below and we’ll get back to you soon.</p>
+    <div class="container mt-5 mb-5">
+        <h1 class="text-center">Privacy Policy</h1>
+        <p>
+            At Car Rental, we value your trust and are committed to protecting your personal data. This privacy policy outlines how we collect, use, and safeguard your information when you interact with our services.
+        </p>
 
-                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-                {
-                    <div class="alert alert-danger">
-                        @Model.ErrorMessage
-                    </div>
-                }
-                @if (!string.IsNullOrEmpty(Model.SuccessMessage))
-                {
-                    <div class="alert alert-success">
-                        @Model.SuccessMessage
-                    </div>
-                }
-                <script>
-                   
-                     {
-                        const alert = document.querySelector('.alert-success');
-                        if (alert) {
-                            alert.style.display = 'none';
-                        }
-                    }, 5000);
-                </script>
+        <h3>1. Information We Collect</h3>
+        <p>
+            We collect the following types of information:
+        </p>
+        <ul>
+            <li><strong>Personal Information:</strong> Includes your name, email address, phone number, and payment details.</li>
+            <li><strong>Usage Data:</strong> Information on how you use our website, including IP addresses, browser types, and pages viewed.</li>
+            <li><strong>Cookies:</strong> We use cookies to enhance your user experience. For more details, please refer to our Cookie Policy.</li>
+        </ul>
 
+        <h3>2. How We Use Your Information</h3>
+        <p>
+            The information we collect is used for:
+        </p>
+        <ul>
+            <li>Processing your bookings and payments securely.</li>
+            <li>Improving our services and personalizing your experience.</li>
+            <li>Sending updates, promotional offers, and service notifications.</li>
+            <li>Ensuring compliance with legal and regulatory requirements.</li>
+        </ul>
 
+        <h3>3. Data Sharing and Security</h3>
+        <p>
+            We do not sell or share your data with third parties, except:
+        </p>
+        <ul>
+            <li>With trusted service providers for payment processing and IT support.</li>
+            <li>As required by law or to protect our legal rights.</li>
+            <li>In case of business mergers, acquisitions, or restructuring.</li>
+        </ul>
+        <p>
+            We implement advanced security measures, including encryption, to protect your data against unauthorized access or breaches.
+        </p>
 
-            <div class="contact-form">
-                <form method="post">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" class="form-control" asp-for="Contact.Name" placeholder="Your Name" required />
-                        <span asp-validation-for="Contact.Name" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" asp-for="Contact.Phone" placeholder="Your Phone Number" required />
-                        <span asp-validation-for="Contact.Phone" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" class="form-control" asp-for="Contact.Email" placeholder="Your Email" required />
-                        <span asp-validation-for="Contact.Email" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea id="message" class="form-control" asp-for="Contact.Message" rows="4" placeholder="Your Message" required></textarea>
-                        <span asp-validation-for="Contact.Message" class="text-danger"></span>
-                    </div>
-                    <button type="submit" class="btn btn-dark w-100">Submit</button>
-                </form>
-            </div>
-        </div>
-            
-            <div class="col-md-6">
-                <h2>Contact Information</h2>
-                <p class="mb-4">You can also reach us using the contact details below:</p>
+        <h3>4. Your Rights</h3>
+        <p>
+            As a user, you have the right to:
+        </p>
+        <ul>
+            <li>Access and update your personal information.</li>
+            <li>Request the deletion of your data under applicable laws.</li>
+            <li>Opt-out of promotional communications by unsubscribing.</li>
+        </ul>
 
-                <div class="contact-details mb-4">
-                    <i class="fa-solid fa-envelope"></i>
-                    <h4>Email</h4>
-                    <h6>
-                        <a href="mailto:osamasalma143@gmail.com" class="text-decoration-none">osamasalma143@gmail.com</a>
-                    </h6>
-                </div>
-                <div class="contact-details mb-4">
-                    <i class="fa-solid fa-phone"></i>
-                    <h4>Phone</h4>
-                    <h6>012 72821919</h6>
-                </div>
-                <div class="contact-details mb-4">
-                    <i class="fa-solid fa-map-marker-alt"></i>
-                    <h4>Location</h4>
-                    <h6>SIXT rent a car - Madinaty</h6>
-                </div>
+        <h3>5. Third-Party Links</h3>
+        <p>
+            Our website may include links to third-party websites. We are not responsible for the privacy practices of these external sites and encourage you to review their policies.
+        </p>
 
-                
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d221039.08342764323!2d31.370149887906297!3d30.044440117670195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d29.9794432!2d31.440896!4m5!1s0x14581dd74fe06979%3A0x7af4a0b84dc09d5c!2sSIXT%20rent%20a%20car%20-%20Madinaty%D8%8C%20Open%20Air%20Mall%2C%20Second%20New%20Cairo%2C%20Cairo%20Governorate%204771203!3m2!1d30.107722799999998!2d31.6268034!5e0!3m2!1sen!2seg!4v1732277911640!5m2!1sen!2seg"
-                            width="100%" height="100%" style="border: 0" allowfullscreen="" loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </div>
+        <h3>6. Updates to This Policy</h3>
+        <p>
+            We may update this privacy policy periodically. Please revisit this page to stay informed of any changes.
+        </p>
+
+        <h3>7. Contact Us</h3>
+        <p>
+            If you have any questions or concerns regarding our privacy practices, please contact us at:
+        </p>
+        <ul>
+            <li>Email: support@XRent.com</li>
+            <li>Phone: +1-800-555-1234</li>
+        </ul>
     </div>
-</div>
+
     <section class="footer" style="background-color: black;">
         <div class="row">
             <div class="footer-content col-3">
@@ -170,12 +150,37 @@
             </div>
         </div>
     </section>
-   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
-        html, body {
-            
-            overflow-x: hidden;
+        h1 {
+            margin-top: 20px;
+            font-family: 'Times New Roman', serif;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 15px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        p {
+            font-size: 18px;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        ul li a {
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+           
+
+        .container {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .footer {
@@ -247,13 +252,8 @@
         .nav-brand {
             margin-left: -100px;
         }
+    </style>
 
-        body .navbar {
-            padding: 10px 20px; /* Matches the other pages */
-        }
-
-</style>
 </body>
 </html>
-
 
