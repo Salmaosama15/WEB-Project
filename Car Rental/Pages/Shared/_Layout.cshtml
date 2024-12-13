@@ -10,37 +10,65 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-black">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Car_Rental</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand text-white fw-bold" href="/">Xrent</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link text-white" asp-page="/Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" asp-page="/Signup">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" asp-page="/AboutUs">About Us</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" role="button" data-bs-toggle="dropdown">Cars</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-page="/carspage">Main page</a></li>
+                                <li><a class="dropdown-item" asp-page="/SedanCars">Sedan</a></li>
+                                <li><a class="dropdown-item" asp-page="/SUVCars">SUV</a></li>
+                                <li><a class="dropdown-item" asp-page="/LuxuryCars">Luxury</a></li>
+                                <li><a class="dropdown-item" asp-page="/EconomyCars">Economy</a></li>
+                                <li><a class="dropdown-item" asp-page="/4X4Cars">4X4</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link text-white" asp-page="/Contact">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#">Privacy</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Car_Rental - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <section class="footer" style="background-color: black;">
+        <div class="row">
+            <div class="footer-content col-3">
+                <img src="seat.jpeg" width="75" height="75" alt="logo" style="margin-left: 100px; margin-top: 20px;">
+            </div>
+            <div class="footer-content col-3">
+                <div class="icons">
+                    <h4 style="color: azure;">Reach Us</h4>
+                    <a href="https://www.facebook.com" style="display: block; margin-bottom: 10px;"><i class='bx bxl-facebook-circle'></i></a>
+                    <a href="https://www.telegram.com" style="display: block; margin-bottom: 10px;"><i class='bx bxl-telegram'></i></a>
+                    <a href="https://www.instagram.com" style="display: block; margin-bottom: 10px;"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.truecaller.com" style="display: block; margin-bottom: 10px;"><i class='bx bxs-phone-call'></i></a>
+
+                </div>
+            </div>
+            <div class="footer-content col-3">
+                <h4 style="color: azure"> Car Models </h4>
+                <li style="list-style-type: none;"><a href="#">Sedan</a></li>
+                <li style="list-style-type: none;"><a href="#">SUV's</a></li>
+                <li style="list-style-type: none;"><a href="#">Luxury</a></li>
+                <li style="list-style-type: none;"><a href="#">Economy</a></li>
+                <li style="list-style-type: none;"><a href="#">4X4</a></li>
+            </div>
         </div>
-    </footer>
+    </section>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

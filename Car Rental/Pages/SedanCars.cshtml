@@ -1,18 +1,346 @@
 ﻿@page
 @model SedanCarsModel
-
+@{
+    ViewData["Title"] = "Sedan cars - Car Rental";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sedan Cars</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <style>
+  
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-black">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="/">
+                <img src="~/images/logos/yellow.jpg" alt="XRent Logo" style="width: 85px; height: 70px; margin-right: 8px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" asp-page="/Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" asp-page="/Signup">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" asp-page="/AboutUs">About Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white dropdown-toggle" role="button" data-bs-toggle="dropdown">Cars</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-page="/carspage">Main page</a></li>
+                            <li><a class="dropdown-item" asp-page="/SedanCars">Sedan</a></li>
+                            <li><a class="dropdown-item" asp-page="/SUVCars">SUV</a></li>
+                            <li><a class="dropdown-item" asp-page="/LuxuryCars">Luxury</a></li>
+                            <li><a class="dropdown-item" asp-page="/EconomyCars">Economy</a></li>
+                            <li><a class="dropdown-item" asp-page="/4X4Cars">4X4</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white" asp-page="/Contact">Contact Us</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+
+    <div class="container">
+        <h2 class="text-center mt-4">Sedan Cars</h2>
+
+        <div class="row">
+    
+            <div class="col-md-4">
+                <label for="price-range">Select Price Range:</label>
+                <select id="price-range" class="form-select">
+                    <option value="all">All Prices</option>
+                    <option value="low">0 - 500,000 EGP</option>
+                    <option value="medium">500,000 - 1,000,000 EGP</option>
+                    <option value="high">1,000,000+ EGP</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="origin-select">Select Car Origin:</label>
+                <select id="origin-select" class="form-select">
+                    <option value="all">All Origins</option>
+                    <option value="german">German</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="french">French</option>
+                    <option value="korean">Korean</option>
+                    <option value="italian">Italian</option>
+                    <option value="american">American</option>
+                    <option value="czech">Czech</option>
+                </select>
+            </div>
+
+
+
+            <div class="row mt-4" id="car-list">
+                <div class="col-md-4 car-item" data-price="low" data-origin="italian">
+                    <div class="card">
+                        <img src="/images/Sedan/1ddaf2537de251853a54a72a3eaabbe3.jpg" class="card-img-top" alt="Sedan 1">
+                        <div class="card-body">
+                            <h4 class="card-title">Fiat Tipo</h4>
+                            <p class="card-text">Comfortable, fuel-efficient, and stylish.</p>
+                            <p><strong>Colour:White</strong></p>
+                            <p class="price">350,000EGP</p>
+                            <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 car-item"  data-price="medium" data-origin="japanese">
+                    <div class="card">
+                        <img src="/images/Sedan/754b54a4c38a16c42a9e72cccc10f273.jpg" class="card-img-top" alt="Sedan 2">
+                        <div class="card-body">
+                            <h4 class="card-title">Toyota Corolla</h4>
+                            <p class="card-text">Luxury meets performance in this sleek sedan.</p>
+                            <p><strong>Colour:Blue</strong></p>
+                            <p class="price">500,000EGP</p>
+                            <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 car-item" data-price="medium" data-origin="korean">
+                    <div class="card">
+                        <img src="/images/Sedan/pexels-saav-495849469-16028417.jpg" class="card-img-top" alt="Sedan 3">
+                        <div class="card-body">
+                            <h4 class="card-title">Kia Cerato</h4>
+                            <p class="card-text">Ideal for city driving with a spacious interior.</p>
+                            <p><strong>Colour:Red</strong></p>
+                            <p class="price">600,000EGP</p>
+                            <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item" data-price="low" data-origin="korean">
+                <div class="card">
+                    <img src="/images/Sedan/9b3ffb76aad1ca8114ef23febfa17faa.jpg" class="card-img-top" alt="Sedan 4">
+                    <div class="card-body">
+                        <h4 class="card-title">Hyundai Elantra AD</h4>
+                        <p class="card-text">A dynamic, performance-driven sedan perfect for urban environments.</p>
+                        <p><strong>Colour:Silver</strong></p>
+                        <p class="price">450,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4 car-item"  data-price="low" data-origin="japanese">
+                <div class="card">
+                    <img src="/images/Sedan/nissan-885308_640.jpg" class="card-img-top" alt="Sedan 5">
+                    <div class="card-body">
+                        <h4 class="card-title">Nissan Sentra</h4>
+                        <p class="card-text">A sleek and efficient sedan with advanced features for a comfortable drive.</p>
+                        <p><strong>Colour:White</strong></p>
+                        <p class="price">400,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item"  data-price="medium" data-origin="japanese">
+                <div class="card">
+                    <img src="/images/Sedan/df74fa3f7e2a94b586dcfcc7fcbd832d.jpg" class="card-img-top" alt="Honda Civic">
+                    <div class="card-body">
+                        <h4 class="card-title">Honda Civic</h4>
+                        <p class="card-text">A blend of style, efficiency, and advanced features.</p>
+                        <p><strong>Colour:Red</strong></p>
+                        <p class="price">500,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item"  data-price="medium" data-origin="japanese">
+                <div class="card">
+                    <img src="/images/Sedan/9abbf6ba8e088eb80f4d478d0052fec1.jpg" class="card-img-top" alt="Mazda 3 Sedan">
+                    <div class="card-body">
+                        <h4 class="card-title">Mazda 3 </h4>
+                        <p class="card-text">Elegant design and outstanding performance.</p>
+                        <p><strong>Colour:Black</strong></p>
+                        <p class="price">550,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item" data-price="medium" data-origin="german">
+                <div class="card">
+                    <img src="/images/Sedan/cc793094ddaef686070555d1a95c64c1.jpg" class="card-img-top" alt="Volkswagen Jetta">
+                    <div class="card-body">
+                        <h4 class="card-title">Volkswagen Jetta</h4>
+                        <p class="card-text">Premium quality with a spacious interior.</p>
+                        <p><strong>Colour:Black</strong></p>
+                        <p class="price">600,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item" data-color="black" data-price="medium" data-origin="american">
+                <div class="card">
+                    <img src="/images/Sedan/68557de13cf5796fbdc4ef48fefc553c.jpg" class="card-img-top" alt="Chevrolet Malibu">
+                    <div class="card-body">
+                        <h4 class="card-title">Chevrolet Malibu</h4>
+                        <p class="card-text">A dependable sedan with modern technology.</p>
+                        <p><strong>Colour:Black</strong></p>
+                        <p class="price">620,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item"  data-price="medium" data-origin="czech">
+                <div class="card">
+                    <img src="/images/Sedan/e4fcc2ea13e357275bd75aedb6180b02.jpg" class="card-img-top" alt="Skoda Octavia">
+                    <div class="card-body">
+                        <h4 class="card-title">Skoda Octavia</h4>
+                        <p class="card-text">Sophisticated and efficient for any journey.</p>
+                        <p><strong>Colour:Blue</strong></p>
+                        <p class="price">580,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item" data-price="medium" data-origin="french">
+                <div class="card">
+                    <img src="/images/Sedan/e489ad959f093dff2f936290dab58879.jpg" class="card-img-top" alt="Peugeot 508">
+                    <div class="card-body">
+                        <h4 class="card-title">Peugeot 508</h4>
+                        <p class="card-text">A stylish French sedan with cutting-edge technology.</p>
+                        <p><strong>Colour:Black</strong></p>
+                        <p class="price">750,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 car-item"  data-price="medium" data-origin="japanese">
+                <div class="card">
+                    <img src="/images/Sedan/248eb1387f409512e3aaf0692079940c.jpg" class="card-img-top" alt="Subaru Impreza">
+                    <div class="card-body">
+                        <h4 class="card-title">Subaru Impreza Sedan</h4>
+                        <p class="card-text">Reliable and safe with impressive performance.</p>
+                        <p><strong>Colour:White</strong></p>
+                        <p class="price">630,000EGP</p>
+                        <a asp-page="/Booking" class="btn btn-dark">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="description-section">
+            <p>
+                Sedans are among the most versatile and widely used car types, known for their practicality and comfort.
+                With a focus on elegance and functionality, sedans provide a spacious interior with separate compartments
+                for passengers and luggage. They are ideal for families, professionals, and long-distance commuters, offering
+                excellent fuel efficiency and a smooth driving experience. Sedans also boast advanced safety features,
+                user-friendly technology, and superior aerodynamics, making them suitable for city driving and highway cruising.
+                Their refined design and luxurious finishes make them a popular choice for individuals who prioritize style and comfort.
+            </p>
+        </div>
+
+
+
+        <div class="text-center mt-4" style="padding-bottom:20px;">
+            <a href="cars.html" class="btn btn-dark">Back to Categories</a>
+        </div>
+    </div>
+    <section class="footer" style="background-color: black;">
+        <div class="row">
+            <div class="footer-content col-3">
+                <img src="~/images/logos/yellow.jpg" width="85" height="70" alt="logo" style="margin-left: 100px; margin-top: 20px;">
+            </div>
+            <div class="footer-content col-3">
+                <div class="icons">
+                    <h4 style="color: azure;">Reach Us</h4>
+                    <a href="https://www.facebook.com" class="icon facebook" style="display: block; margin-bottom: 10px;">
+                        <i class='bx bxl-facebook-circle'></i>
+                    </a>
+                    <a href="https://www.telegram.com" class="icon telegram" style="display: block; margin-bottom: 10px;">
+                        <i class='bx bxl-telegram'></i>
+                    </a>
+                    <a href="https://www.instagram.com" class="icon instagram" style="display: block; margin-bottom: 10px;">
+                        <i class='bx bxl-instagram'></i>
+                    </a>
+                    <a href="https://www.truecaller.com" class="icon phone" style="display: block; margin-bottom: 10px;">
+                        <i class='bx bxs-phone-call'></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-content col-3">
+                <h4 style="color: azure"> Car Models </h4>
+                <li style="list-style-type: none;"><a href="#">Sedan</a></li>
+                <li style="list-style-type: none;"><a href="#">SUV's</a></li>
+                <li style="list-style-type: none;"><a href="#">Luxury</a></li>
+                <li style="list-style-type: none;"><a href="#">Economy</a></li>
+                <li style="list-style-type: none;"><a href="#">4X4</a></li>
+            </div>
+        </div>
+    </section>
+    <script>
+            document.addEventListener('DOMContentLoaded', function()
+            {
+            const filterPrice = document.getElementById('price-range');
+            const filterOrigin = document.getElementById('origin-select');
+            const carItems = document.querySelectorAll('.car-item');
+
+            function filterCars()
+            {
+
+                const selectedPrice = filterPrice.value;
+                const selectedOrigin = filterOrigin.value;
+
+                carItems.forEach(function(carItem)
+                {
+
+                    const carPrice = carItem.getAttribute('data-price');
+                    const carOrigin = carItem.getAttribute('data-origin');
+
+
+
+                    const matchesPrice = selectedPrice === 'all' || carPrice === selectedPrice;
+                    const matchesOrigin = selectedOrigin === 'all' || carOrigin === selectedOrigin;
+
+
+                    if (matchesPrice && matchesOrigin)
+                    {
+                        carItem.style.display = 'block';
+                    }
+                    else
+                    {
+                        carItem.style.display = 'none';
+                    }
+                }
+            );
+            }
+
+
+
+            filterPrice.addEventListener('change', filterCars);
+            filterOrigin.addEventListener('change', filterCars);
+
+
+            filterCars();
+        }
+        );
+
+
+
+    </script>
+    <style>
 
         h2 {
             font-family: 'Times New Roman', Times, serif;
@@ -53,325 +381,6 @@
             text-align: justify;
         }
 
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-black">
-        <div class="container">
-            <a class="navbar-brand text-white fw-bold" href="/">Xrent</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" asp-page="/Index">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" asp-page="/Signup">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" asp-page="/AboutUs">About Us</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" role="button" data-bs-toggle="dropdown">Cars</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" asp-page="/carspage">Main page</a></li>
-                            <li><a class="dropdown-item" asp-page="/SedanCars">Sedan</a></li>
-                            <li><a class="dropdown-item" asp-page="/SUVCars">SUV</a></li>
-                            <li><a class="dropdown-item" asp-page="/LuxuryCars">Luxury</a></li>
-                            <li><a class="dropdown-item" asp-page="/EconomyCars">Economy</a></li>
-                            <li><a class="dropdown-item" asp-page="/4X4Cars">4X4</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link text-white" asp-page="/Contact">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Privacy</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <div class="container">
-        <h2 class="text-center mt-4">Sedan Cars</h2>
-
-        <div class="row">
-            <div class="col-md-4">
-                <label for="color-select">Select Car Color:</label>
-                <select id="color-select" class="form-select">
-                    <option value="all">All</option>
-                    <option value="black">Black</option>
-                    <option value="white">White</option>
-                    <option value="blue">Blue</option>
-                    <option value="red">Red</option>
-                    <option value="silver">Silver</option>
-                </select>
-            </div>
-
-            <div class="col-md-4">
-                <label for="price-range">Select Price Range:</label>
-                <select id="price-range" class="form-select">
-                    <option value="all">All Prices</option>
-                    <option value="low">0 - 500,000 EGP</option>
-                    <option value="medium">500,000 - 1,000,000 EGP</option>
-                    <option value="high">1,000,000+ EGP</option>
-                </select>
-            </div>
-
-            <div class="col-md-4">
-                <label for="origin-select">Select Car Origin:</label>
-                <select id="origin-select" class="form-select">
-                    <option value="all">All Origins</option>
-                    <option value="german">German</option>
-                    <option value="japanese">Japanese</option>
-                    <option value="french">French</option>
-                    <option value="korean">Korean</option>
-                    <option value="italian">Italian</option>
-                    <option value="american">American</option>
-                    <option value="czech">Czech</option>
-                </select>
-            </div>
-
-
-
-            <div class="row mt-4" id="car-list">
-                <div class="col-md-4 car-item" data-color="white" data-price="low" data-origin="italian">
-                    <div class="card">
-                        <img src="/images/1ddaf2537de251853a54a72a3eaabbe3.jpg" class="card-img-top" alt="Sedan 1">
-                        <div class="card-body">
-                            <h4 class="card-title">Fiat Tipo</h4>
-                            <p class="card-text">Comfortable, fuel-efficient, and stylish.</p>
-                            <p class="price">350,000EGP</p>
-                            <a href="#" class="btn btn-dark">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-4 car-item" data-color="blue" data-price="medium" data-origin="japanese">
-                    <div class="card">
-                        <img src="/images/754b54a4c38a16c42a9e72cccc10f273.jpg" class="card-img-top" alt="Sedan 2">
-                        <div class="card-body">
-                            <h4 class="card-title">Toyota Corolla</h4>
-                            <p class="card-text">Luxury meets performance in this sleek sedan.</p>
-                            <p class="price">500,000EGP</p>
-                            <a asp-page="/CarBooking" class="btn btn-dark">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-4 car-item" data-color="red" data-price="medium" data-origin="korean">
-                    <div class="card">
-                        <img src="/images/pexels-saav-495849469-16028417.jpg" class="card-img-top" alt="Sedan 3">
-                        <div class="card-body">
-                            <h4 class="card-title">Kia Cerato</h4>
-                            <p class="card-text">Ideal for city driving with a spacious interior.</p>
-                            <p class="price">600,000EGP</p>
-                            <a href="#" class="btn btn-dark">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="silver" data-price="low" data-origin="korean">
-                <div class="card">
-                    <img src="/images/9b3ffb76aad1ca8114ef23febfa17faa.jpg" class="card-img-top" alt="Sedan 4">
-                    <div class="card-body">
-                        <h4 class="card-title">Hyundai Elantra AD</h4>
-                        <p class="card-text">A dynamic, performance-driven sedan perfect for urban environments.</p>
-                        <p class="price">450,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4 car-item" data-color="white" data-price="low" data-origin="japanese">
-                <div class="card">
-                    <img src="/images/nissan-885308_640.jpg" class="card-img-top" alt="Sedan 5">
-                    <div class="card-body">
-                        <h4 class="card-title">Nissan Sentra</h4>
-                        <p class="card-text">A sleek and efficient sedan with advanced features for a comfortable drive.</p>
-                        <p class="price">400,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="red" data-price="medium" data-origin="japanese">
-                <div class="card">
-                    <img src="/images/df74fa3f7e2a94b586dcfcc7fcbd832d.jpg" class="card-img-top" alt="Honda Civic">
-                    <div class="card-body">
-                        <h4 class="card-title">Honda Civic</h4>
-                        <p class="card-text">A blend of style, efficiency, and advanced features.</p>
-                        <p class="price">500,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="black" data-price="medium" data-origin="japanese">
-                <div class="card">
-                    <img src="/images/9abbf6ba8e088eb80f4d478d0052fec1.jpg" class="card-img-top" alt="Mazda 3 Sedan">
-                    <div class="card-body">
-                        <h4 class="card-title">Mazda 3 Sedan</h4>
-                        <p class="card-text">Elegant design and outstanding performance.</p>
-                        <p class="price">550,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="black" data-price="medium" data-origin="german">
-                <div class="card">
-                    <img src="/images/cc793094ddaef686070555d1a95c64c1.jpg" class="card-img-top" alt="Volkswagen Jetta">
-                    <div class="card-body">
-                        <h4 class="card-title">Volkswagen Jetta</h4>
-                        <p class="card-text">Premium quality with a spacious interior.</p>
-                        <p class="price">600,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="black" data-price="medium" data-origin="american">
-                <div class="card">
-                    <img src="/images/68557de13cf5796fbdc4ef48fefc553c.jpg" class="card-img-top" alt="Chevrolet Malibu">
-                    <div class="card-body">
-                        <h4 class="card-title">Chevrolet Malibu</h4>
-                        <p class="card-text">A dependable sedan with modern technology.</p>
-                        <p class="price">620,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="blue" data-price="medium" data-origin="czech">
-                <div class="card">
-                    <img src="/images/e4fcc2ea13e357275bd75aedb6180b02.jpg" class="card-img-top" alt="Skoda Octavia">
-                    <div class="card-body">
-                        <h4 class="card-title">Skoda Octavia</h4>
-                        <p class="card-text">Sophisticated and efficient for any journey.</p>
-                        <p class="price">580,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="black" data-price="medium" data-origin="french">
-                <div class="card">
-                    <img src="/images/e489ad959f093dff2f936290dab58879.jpg" class="card-img-top" alt="Peugeot 508">
-                    <div class="card-body">
-                        <h4 class="card-title">Peugeot 508</h4>
-                        <p class="card-text">A stylish French sedan with cutting-edge technology.</p>
-                        <p class="price">750,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 car-item" data-color="white" data-price="medium" data-origin="japanese">
-                <div class="card">
-                    <img src="/images/248eb1387f409512e3aaf0692079940c.jpg" class="card-img-top" alt="Subaru Impreza">
-                    <div class="card-body">
-                        <h4 class="card-title">Subaru Impreza Sedan</h4>
-                        <p class="card-text">Reliable and safe with impressive performance.</p>
-                        <p class="price">630,000EGP</p>
-                        <a href="#" class="btn btn-dark">Book Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="description-section">
-            <p>
-                Sedans are among the most versatile and widely used car types, known for their practicality and comfort.
-                With a focus on elegance and functionality, sedans provide a spacious interior with separate compartments
-                for passengers and luggage. They are ideal for families, professionals, and long-distance commuters, offering
-                excellent fuel efficiency and a smooth driving experience. Sedans also boast advanced safety features,
-                user-friendly technology, and superior aerodynamics, making them suitable for city driving and highway cruising.
-                Their refined design and luxurious finishes make them a popular choice for individuals who prioritize style and comfort.
-            </p>
-        </div>
-
-
-
-        <div class="text-center mt-4" style="padding-bottom:20px;">
-            <a href="cars.html" class="btn btn-dark">Back to Categories</a>
-        </div>
-    </div>
-    <section class="footer" style="background-color: black;">
-        <div class="row">
-            <div class="footer-content col-3">
-                <img src="seat.jpeg" width="75" height="75" alt="logo" style="margin-left: 100px; margin-top: 20px;">
-            </div>
-            <div class="footer-content col-3">
-                <div class="icons">
-                    <h4 style="color: azure;">Reach Us</h4>
-                    <a href="https://www.facebook.com" style="display: block; margin-bottom: 10px;"><i class='bx bxl-facebook-circle'></i></a>
-                    <a href="https://www.telegram.com" style="display: block; margin-bottom: 10px;"><i class='bx bxl-telegram'></i></a>
-                    <a href="https://www.instagram.com" style="display: block; margin-bottom: 10px;"><i class='bx bxl-instagram'></i></a>
-                    <a href="https://www.truecaller.com" style="display: block; margin-bottom: 10px;"><i class='bx bxs-phone-call'></i></a>
-
-                </div>
-            </div>
-            <div class="footer-content col-3">
-                <h4 style="color: azure"> Car Models </h4>
-                <li style="list-style-type: none;"><a href="#">Sedan</a></li>
-                <li style="list-style-type: none;"><a href="#">SUV's</a></li>
-                <li style="list-style-type: none;"><a href="#">Luxury</a></li>
-                <li style="list-style-type: none;"><a href="#">Economy</a></li>
-                <li style="list-style-type: none;"><a href="#">4X4</a></li>
-            </div>
-        </div>
-    </section>
-    <script>
-            document.addEventListener('DOMContentLoaded', function()
-            {
-            const filterColor = document.getElementById('color-select');
-            const filterPrice = document.getElementById('price-range');
-            const filterOrigin = document.getElementById('origin-select');
-            const carItems = document.querySelectorAll('.car-item');
-
-            function filterCars()
-            {
-                const selectedColor = filterColor.value;
-                const selectedPrice = filterPrice.value;
-                const selectedOrigin = filterOrigin.value;
-
-                carItems.forEach(function(carItem)
-                {
-                    const carColor = carItem.getAttribute('data-color');
-                    const carPrice = carItem.getAttribute('data-price');
-                    const carOrigin = carItem.getAttribute('data-origin');
-
-
-                    const matchesColor = selectedColor === 'all' || carColor === selectedColor;
-                    const matchesPrice = selectedPrice === 'all' || carPrice === selectedPrice;
-                    const matchesOrigin = selectedOrigin === 'all' || carOrigin === selectedOrigin;
-
-
-                    if (matchesColor && matchesPrice && matchesOrigin)
-                    {
-                        carItem.style.display = 'block';
-                    }
-                    else
-                    {
-                        carItem.style.display = 'none';
-                    }
-                }
-            );
-            }
-
-
-            filterColor.addEventListener('change', filterCars);
-            filterPrice.addEventListener('change', filterCars);
-            filterOrigin.addEventListener('change', filterCars);
-
-
-            filterCars();
-        }
-        );
-
-
-
-    </script>
-    <style>
         html, body {
             overflow-x: hidden;
         }
@@ -405,17 +414,37 @@
             color: rgb(51, 53, 50);
         }
 
-        .icons {
+        .icons i {
+            font-size: 18px;
+            padding: 2px;
             display: inline-block;
-            font-size: 22px;
-            color: burlywood;
-            margin-right: 17px;
-            transition: all .40s ease;
+            font-size: 24px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
-            .icons a:hover {
-                transform: translateY(-5px)
-            }
+
+        .icon.facebook i {
+            color: #1877F2;
+        }
+
+        .icon.telegram i {
+            color: #0088CC;
+        }
+
+        .icon.instagram i {
+            color: #E1306C;
+        }
+
+        .icon.phone i {
+            color: #0077FF;
+        }
+
+
+        .icons a:hover i {
+            transform: scale(1.1);
+        }
 
         .nav-item a:hover {
             background: rgba(217, 191, 191, 0.759);

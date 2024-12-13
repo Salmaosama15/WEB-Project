@@ -1,95 +1,72 @@
-using Car_Rental.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 public class ContactModel : PageModel
 {
-    private readonly ApplicationDbContext _context;
-    private readonly ILogger<ContactModel> _logger;
+    private readonly IConfiguration _configuration;
 
-    // Inject the ApplicationDbContext and Logger
-    public ContactModel(ApplicationDbContext context, ILogger<ContactModel> logger)
+    public ContactModel(IConfiguration configuration)
     {
-        _context = context;
-        _logger = logger;
+        _configuration = configuration;
     }
 
-    // Model to bind the contact form
     [BindProperty]
     public Contact Contact { get; set; }
 
-    // Property to hold error messages
+    public string SuccessMessage { get; set; }
     public string ErrorMessage { get; set; }
 
     public void OnGet()
     {
+        // Initialize if needed
     }
 
     public IActionResult OnPost()
     {
+        if (!ModelState.IsValid)
+        {
+            ErrorMessage = "Please fill in all required fields.";
+            return Page();
+        }
+
+        string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
         try
         {
-            // Basic validation: Ensure fields are not empty or whitespace
-            if (string.IsNullOrWhiteSpace(Contact.Name) ||
-                string.IsNullOrWhiteSpace(Contact.Phone) ||
-                string.IsNullOrWhiteSpace(Contact.Email) ||
-                string.IsNullOrWhiteSpace(Contact.Message))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                ErrorMessage = "All fields are required.";
-                return Page();
+                connection.Open();
+                string query = "INSERT INTO Contacts (Name, Phone, Email, Message) VALUES (@Name, @Phone, @Email, @Message)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", Contact.Name);
+                    command.Parameters.AddWithValue("@Phone", Contact.Phone);
+                    command.Parameters.AddWithValue("@Email", Contact.Email);
+                    command.Parameters.AddWithValue("@Message", Contact.Message);
+                    command.ExecuteNonQuery();
+                }
             }
 
-            // Email validation using a simple regex pattern (for demonstration purposes)
-            if (!IsValidEmail(Contact.Email))
-            {
-                ErrorMessage = "Please enter a valid email address.";
-                return Page();
-            }
-
-            // Phone number validation (basic length check, can be expanded)
-            if (Contact.Phone.Length < 10)
-            {
-                ErrorMessage = "Please enter a valid phone number.";
-                return Page();
-            }
-
-            // Add the contact form data to the context
-            _context.Contact.Add(Contact);
-
-            // Save changes to the database
-            _context.SaveChanges();
-
-            // Redirect to a confirmation page or a success message
-            return RedirectToPage("/ContactConfirmation");
+            SuccessMessage = "Thank you! We will contact you as soon as possible.";
         }
         catch (Exception ex)
         {
-            // Log the full exception details
-            _logger.LogError(ex, "Error saving contact form");
-
-            // Add a general error message
-            ErrorMessage = "An error occurred while saving your contact information.";
-            return Page(); // Return to the page with the error message
+            ErrorMessage = "An error occurred while saving your message. Please try again later.";
         }
+
+        return Page();
     }
-
-    // Helper method for simple email validation
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
 }
 
-
-
+public class Contact
+{
+    [Key]
+   public int Id { get; set; }
+    public string Name { get; set; }
+    public string Phone { get; set; }
+    public string Email { get; set; }
+    public string Message { get; set; }
+}
 

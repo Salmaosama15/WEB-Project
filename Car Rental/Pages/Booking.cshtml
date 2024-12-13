@@ -1,80 +1,90 @@
 ﻿@page
 @model Car_Rental.Pages.BookingModel
 @{
+    ViewData["Title"] = "Booking - Car Rental";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Car Booking</title>
-    <!-- Bootstrap CSS -->
+    <title>@ViewData["Title"]</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
           rel="stylesheet" />
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .booking-container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .form-label {
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #ffc107; /* Bootstrap warning yellow */
-            border-color: #ffc107;
-            color: black; /* Ensures text is readable */
-        }
-
-            .btn-primary:hover {
-                background-color: #6c757d; /* Bootstrap grey */
-                border-color: #6c757d;
-                color: white; /* Changes text color on hover for contrast */
-            }
-    </style>
+   
 </head>
 <body>
     <div class="container booking-container">
+        
+        <div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+        </div>
         <h2 class="text-center mb-4">Book Your Car</h2>
-        <form action="/submit-booking" method="POST">
+		<form method ="POST">
             <div class="mb-3">
                 <label for="carSelection" class="form-label">Select a Car</label>
                 <select class="form-select" id="carSelection" name="car" onchange="calculatePrice()">
-                    <option value="Nessan Sunny" data-price="50">Economy - Nessan Sunny</option>
-                    <option value="Renault Bgan" data-price="55">Economy - Renault Bgan</option>
-                    <option value="Chevorlet Optra" data-price="60">Economy - Chevorlet Optra</option>
-                    <option value="Kia Rio" data-price="65">Economy - Kia Rio</option>
-                    <option value="Mitsubishi Mirage" data-price="70">Economy - Mitsubishi Mirage</option>
-                    <option value="Tyota Yaris" data-price="75">Economy - Tyota Yaris</option>
-                    <option value="Honda lwit" data-price="80">Economy - Honda lwit</option>
-                    <option value="Mitsubishi Pajero" data-price="100">4X4 - Mitsubishi Pajero</option>
-                    <option value="Toyota Land Cruiser" data-price="120">4X4 - Toyota Land Cruiser</option>
-                    <option value="Range Rover" data-price="150">4X4 - Range Rover</option>
-                    <option value="Jeep Grand Cherokee" data-price="130">4X4 - Jeep Grand Cherokee</option>
-                    <option value="Tyota 4Runner" data-price="140">4X4 - Tyota 4Runner</option>
-                    <option value="Nissan Patrol" data-price="135">4X4 - Nissan Patrol</option>
-                    <option value="Ford Branco" data-price="125">4X4 - Ford Branco</option>
-                    <option value="KIA Tellceride" data-price="145">4X4 - KIA Tellceride</option>
-                    <option value="Suzuki Swift" data-price="55">Economy - Suzuki Swift</option>
-                    <option value="Mercedes E2OO" data-price="200">Luxury - Mercedes E2OO</option>
-                    <option value="Mercedes S450" data-price="250">Luxury - Mercedes S450</option>
-                    <option value="BMW 520 I" data-price="220">Luxury - BMW 520 I</option>
-                    <option value="MG RX5" data-price="230">Luxury - MG RX5</option>
-                    <option value="Mclaren" data-price="300">Luxury - Mclaren</option>
-                    <option value="Porsche 911" data-price="350">Luxury - Porsche 911</option>
-                    <option value="Maserati Quattroporte" data-price="330">Luxury - Maserati Quattroporte</option>
-                    <option value="Lamparghini" data-price="400">Luxury - Lamparghini</option>
-                    <option value="Rolls-Royce Ghost" data-price="500">Luxury - Rolls-Royce Ghost</option>
-                    <option value="Audi R8" data-price="450">Luxury - Audi R8</option>
+                    <option value="Fiat Tipo" data-price="350000">Sedan - Fiat Tipo</option>
+                    <option value="Toyota Corolla" data-price="500000">Sedan - Toyota Corolla</option>
+                    <option value="Kia Cerato" data-price="600000">Sedan - Kia Cerato</option>
+                    <option value="Hyundai Elantra HD" data-price="450000">Sedan - Hyundai Elantra HD</option>
+                    <option value="Nissan Sentra" data-price="400000">Sedan - Nissan Sentra</option>
+                    <option value="Honda Civic" data-price="500000">Sedan - Honda Civic</option>
+                    <option value="Mazda 3" data-price="550000">Sedan - Mazda 3</option>
+                    <option value="Volkswagen Jetta" data-price="600000">Sedan - Volkswagen Tetta</option>
+                    <option value="Chevrolet Malibu" data-price="620000">Sedan - Chevrolet Malibu</option>
+                    <option value="Skoda Octavia" data-price="580000">Sedan - Skoda Octavia</option>
+                    <option value="Peugeot 508" data-price="750000">Sedan - Peugeot 508</option>
+                    <option value="Subaru Impreza" data-price="630000">Sedan - Subaru Impreza</option>
+                    <option value="Kia Sportage" data-price="550000">SUV - Kia Sportage</option>
+                    <option value="Hyundai Tucson" data-price="700000">SUV - Hyundai Tucson</option>
+                    <option value="Nissan Qashqai" data-price="465000">SUV - Nissan Qashqai</option>
+                    <option value="Renault Kadjar" data-price="590000">SUV - NRenault Kadjar</option>
+                    <option value="Renault Duster" data-price="680000">SUV - Renault Duster</option>
+                    <option value="BMW X6" data-price="670000">SUV - BMW X6</option>
+                    <option value="Mercedes CLS" data-price="1200000">SUV - Mercedes CLS</option>
+                    <option value="Volkswagen Tiguan" data-price="720000">SUV - Volkswagen Tiguan</option>
+                    <option value="Opel Grandland" data-price="540000">SUV - Opel Grandland</option>
+                    <option value="Audi Q7" data-price="1400000">SUV - Audi Q7</option>
+                    <option value="Jetour X70" data-price="580000">SUV - Jetour X70</option>
+                    <option value="Suzuki Vitara" data-price="450000">SUV - Suzuki Vitara</option>
+                    <option value="Nissan Sunny" data-price="300000">Economy- Nissan Sunny</option>
+                    <option value="Renault Logan" data-price="350000">Economy - Renault Logan</option>
+                    <option value="Chevorlet Optra" data-price="290000">Economy - Chevorlet Optra</option>
+                    <option value="Kia Rio" data-price="320000">Economy - Kia Rio</option>
+                    <option value="Mitsubishi Mirage" data-price="280000">Economy - Mitsubishi Mirage</option>
+                    <option value="Toyota Yaris" data-price="340000">Economy - Toyota Yaris</option>
+                    <option value="Honda fit" data-price="330000">Economy - Honda fit</option>
+                    <option value="Suzuki Swift" data-price="310000">Economy - Suzuki Swift</option>
+                    <option value="Mitsubishi Pajero" data-price="1200000">4X4 - Mitsubishi Pajero</option>
+                    <option value="Toyota Land Cruiser" data-price="200000">4X4 - Toyota Land Cruiser</option>
+                    <option value="Range Rover" data-price="2500000">4X4 - Range Rover</option>
+                    <option value="Jeep Grand Cherokee" data-price="1800000">4X4 - Jeep Grand Cherokee</option>
+                    <option value="Toyota 4Runner" data-price="1600000">4X4 - Toyota 4Runner</option>
+                    <option value="Nissan Patrol" data-price="1500000">4X4 - Nissan Patrol</option>
+                    <option value="Ford Branco" data-price="1700000">4X4 - Ford Branco</option>
+                    <option value="KIA Telluride" data-price="1400000">4X4 - KIA Telluride</option>
+                    <option value="Mercedes E2OO" data-price="2500000">Luxury - Mercedes E2OO</option>
+                    <option value="Mercedes S450" data-price="3500000">Luxury - Mercedes S450</option>
+                    <option value="BMW 520 i" data-price="2200000">Luxury - BMW 520 i</option>
+                    <option value="MG RX5" data-price="1400000">Luxury - MG RX5</option>
+                    <option value="Mclaren" data-price="400000">Luxury - Mclaren</option>
+                    <option value="Porsche 911" data-price="3800000">Luxury - Porsche 911</option>
+                    <option value="Maserati Quattroporte" data-price="3200000">Luxury - Maserati Quattroporte</option>
+                    <option value="Lamporghini Aventador" data-price="6500000">Luxury - Lamporghini Aventador</option>
+                    <option value="Rolls-Royce Ghost" data-price="700000">Luxury - Rolls-Royce Ghost</option>
+                    <option value="Audi R8" data-price="4200000">Luxury - Audi R8</option>
                 </select>
             </div>
 
@@ -98,52 +108,98 @@
                        required />
             </div>
 
-            <!-- Price Display -->
+            
             <div class="mb-3">
                 <label for="totalPrice" class="form-label">Total Price</label>
                 <input type="text" id="totalPrice" class="form-control" readonly />
+               
+
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">
+            <button type="submit" class="btn btn-warning w-100">
                 Confirm Booking
             </button>
         </form>
     </div>
 
-    <!-- Bootstrap JS (Optional) -->
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function calculatePrice() {
+                 function calculatePrice() 
+                 {
             const carSelect = document.getElementById("carSelection");
             const startDate = document.getElementById("startDate");
             const endDate = document.getElementById("endDate");
 
+          
             if (carSelect.selectedIndex === -1 || !startDate.value || !endDate.value) {
-                return; // Prevent calculation if any field is missing
-            }
-
-            // Get car price from data-price attribute
-            const carPrice = parseFloat(carSelect.options[carSelect.selectedIndex].getAttribute("data-price"));
-
-            // Parse start and end dates
-            const start = new Date(startDate.value);
-            const end = new Date(endDate.value);
-
-            // Calculate the number of days between start and end date
-            const timeDiff = end - start;
-            const days = timeDiff / (1000 * 3600 * 24);
-
-            if (days < 1) {
-                document.getElementById("totalPrice").value = "Invalid dates";
+                document.getElementById("totalPrice").value = "";
+                
                 return;
             }
 
-            // Calculate total price
+          
+            const carPrice = parseFloat(carSelect.options[carSelect.selectedIndex].getAttribute("data-price").replace(',', ''));
+
+            
+            const start = new Date(startDate.value);
+            const end = new Date(endDate.value);
+
+           
+            const timeDiff = end - start;
+            const days = timeDiff / (1000 * 3600 * 24);
+
+        
+            if (days < 1) {
+                document.getElementById("totalPrice").value = "Invalid dates";
+              
+                return;
+            }
+
+           
             const totalPrice = carPrice * days;
             document.getElementById("totalPrice").value = totalPrice.toFixed(2) + " EGP"; // Change the currency symbol to EGP
+            
         }
+
     </script>
+
+    <style>
+        body {
+            background-image: url('/images/pics/78732a99b7ae6776ac9ecfcce6baa9ed.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: black;
+        }
+
+            .btn-primary:hover {
+                background-color: #6c757d;
+                border-color: #6c757d;
+                color: white;
+            }
+    </style>
 
 </body>
 </html>

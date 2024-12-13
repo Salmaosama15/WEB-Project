@@ -1,4 +1,5 @@
-﻿using Car_Rental.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Car_Rental.Models;
 using Microsoft.EntityFrameworkCore;
 
 public class ApplicationDbContext : DbContext
@@ -8,27 +9,21 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-   
     public DbSet<User> Users { get; set; }
-    public DbSet<Contact> Contact { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public DbSet<Contact> Contacts { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information); // Log SQL queries to console
+        modelBuilder.Entity<Contact>().HasKey(c => c.Id); // Explicitly define the primary key
+
+        base.OnModelCreating(modelBuilder);
     }
+
+    public DbSet<Booking> Bookings { get; set; }
+
 }
 
 
-public class User
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public string ConfirmPassword { get; set; }
-    public string PasswordHash { get; set; }
-    public int PhoneNumber { get; set; }
-}
+
 
 
 

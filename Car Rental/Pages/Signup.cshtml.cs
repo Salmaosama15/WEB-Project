@@ -23,32 +23,26 @@ namespace Car_Rental.Pages
 
         public IActionResult OnPost()
         {
-
-          
             if (string.IsNullOrWhiteSpace(User.FirstName) ||
-        string.IsNullOrWhiteSpace(User.LastName) ||
-        string.IsNullOrWhiteSpace(User.Email) ||
-        string.IsNullOrWhiteSpace(User.Password) ||
-        string.IsNullOrWhiteSpace(User.ConfirmPassword))
+                string.IsNullOrWhiteSpace(User.LastName) ||
+                string.IsNullOrWhiteSpace(User.Email) ||
+                string.IsNullOrWhiteSpace(User.Password) ||
+                string.IsNullOrWhiteSpace(User.ConfirmPassword))
             {
                 ErrorMessage = "All fields are required.";
                 return Page();
             }
 
-
-           
             if (User.Password != User.ConfirmPassword)
             {
                 ErrorMessage = "Passwords do not match.";
-                return Page();  
+                return Page();
             }
 
-           
             User.PasswordHash = BCrypt.Net.BCrypt.HashPassword(User.Password);
 
             try
             {
-                
                 if (_context.Users.Any(u => u.Email == User.Email))
                 {
                     ErrorMessage = "A user with this email already exists.";
@@ -56,17 +50,30 @@ namespace Car_Rental.Pages
                 }
 
                 _context.Users.Add(User);
-                _context.SaveChanges(); 
+                _context.SaveChanges();
 
                 SuccessMessage = "Signup successful!";
-                return Page(); 
+                return Page(); // Success message displayed
             }
             catch (Exception ex)
             {
                 ErrorMessage = "An error occurred: " + ex.Message;
-                return Page();  
+                return Page();
             }
         }
 
+
     }
+}
+
+public class User
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public string ConfirmPassword { get; set; }
+    public string PasswordHash { get; set; }
+    public int PhoneNumber { get; set; }
 }
