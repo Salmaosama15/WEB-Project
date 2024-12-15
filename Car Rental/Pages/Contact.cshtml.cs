@@ -20,7 +20,7 @@ public class ContactModel : PageModel
 
     public void OnGet()
     {
-        // Initialize if needed
+        
     }
 
     public IActionResult OnPost()

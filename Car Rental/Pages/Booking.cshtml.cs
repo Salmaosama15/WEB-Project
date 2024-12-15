@@ -19,7 +19,7 @@ namespace Car_Rental.Pages
 
         public void OnGet()
         {
-            // Handle GET request (if needed)
+            
         }
 
         [HttpPost]
@@ -27,16 +27,16 @@ namespace Car_Rental.Pages
         {
             if (ModelState.IsValid)
             {
-                // Save the booking to the database
+                
                 _context.Bookings.Add(Booking);
                 _context.SaveChanges();
 
-                // Set success message using TempData
+               
                 TempData["SuccessMessage"] = "Success!Your booking has been confirmed. Our team will contact you shortly with further details. Thank you for choosing us!";
-                return Page(); // This reloads the page to display the success message
+                return Page(); 
             }
 
-            // If the model is not valid, set an error message
+           
             TempData["ErrorMessage"] = "Please fill in all required fields!";
             return Page();
         }

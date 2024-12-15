@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Http; // For session management
+using Microsoft.AspNetCore.Http; 
 using BCrypt.Net;
 using System.Linq;
 
@@ -23,28 +23,27 @@ namespace Car_Rental.Pages
 
         public IActionResult OnPost()
         {
-            // Fetch user from the database
             var user = _context.Users.SingleOrDefault(u => u.Email == Email);
             if (user == null)
             {
                 TempData["AlertMessage"] = "Warning: This account does not exist.";
-                return Page(); // Reload the page with a warning message
+                return Page(); 
             }
 
-            // Verify the password
+            
             if (!BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash))
             {
                 TempData["AlertMessage"] = "Warning: Incorrect email or password.";
-                return Page(); // Reload the page with a warning message
+                return Page(); 
             }
 
-            // Login successful - Save user information in session
+           
             HttpContext.Session.SetString("UserId", user.Id.ToString());
-            HttpContext.Session.SetString("UserName", user.FirstName); // Optional for personalization
+            HttpContext.Session.SetString("UserName", user.FirstName); 
 
             TempData["AlertMessage"] = "Success: Login successful!";
-            TempData["RedirectUrl"] = "/carspage"; // URL to redirect after showing success
-            return Page(); // Reload the same page to show the alert
+            TempData["RedirectUrl"] = "/carspage"; 
+            return Page(); 
         }
 
     }
