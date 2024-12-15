@@ -1,0 +1,111 @@
+﻿h2 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.car-item {
+    margin-bottom: 30px;
+}
+
+    .car-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .car-item .price {
+        font-size: 18px;
+        font-weight: bold;
+        color: green;
+    }
+
+.card {
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.description-section p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+
+html, body {
+    overflow-x: hidden;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,auto));
+}
+
+.footer-content h4 {
+    color: rgb(50, 52, 57);
+    margin-bottom: 1.5rem;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.footer-content li {
+    margin-bottom: 8px;
+}
+
+.footer-content a {
+    display: block;
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    transition: all .40s ease;
+}
+
+.footer-content li a:hover {
+    transform: translateY(-3px)translateX(-5px);
+    color: rgb(51, 53, 50);
+}
+
+.icons i {
+    font-size: 18px;
+    padding: 2px;
+    display: inline-block;
+    font-size: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+.icon.facebook i {
+    color: #1877F2;
+}
+
+.icon.telegram i {
+    color: #0088CC;
+}
+
+.icon.instagram i {
+    color: #E1306C;
+}
+
+.icon.phone i {
+    color: #0077FF;
+}
+
+
+.icons a:hover i {
+    transform: scale(1.1);
+}
+
+.nav-item a:hover {
+    background: rgba(217, 191, 191, 0.759);
+    border-style: none;
+}
+
+.nav-brand {
+    margin-left: -100px;
+}}

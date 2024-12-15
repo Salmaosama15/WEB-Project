@@ -1,0 +1,118 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.nav-item a:hover {
+    background: rgba(217, 191, 191, 0.759);
+    border-style: none;
+}
+
+.nav-brand {
+    margin-left: -100px;
+}
+
+h4 {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+    padding-top: 40px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h2 {
+    text-align: left;
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+
+h3 {
+    color: rgb(15, 26, 36);
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    text-align: left;
+    margin-top: 30px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 5px;
+}
+
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,auto));
+}
+
+.footer-content h4 {
+    color: rgb(50, 52, 57);
+    margin-bottom: 1.5rem;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.footer-content li {
+    margin-bottom: 8px;
+}
+
+.footer-content a {
+    display: block;
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    transition: all .40s ease;
+}
+
+.footer-content li a:hover {
+    transform: translateY(-3px)translateX(-5px);
+    color: rgb(51, 53, 50);
+}
+
+.icons i {
+    font-size: 18px;
+    padding: 2px;
+    display: inline-block;
+    font-size: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+.icon.facebook i {
+    color: #1877F2;
+}
+
+.icon.telegram i {
+    color: #0088CC;
+}
+
+.icon.instagram i {
+    color: #E1306C;
+}
+
+.icon.phone i {
+    color: #0077FF;
+}
+
+
+.icons a:hover i {
+    transform: scale(1.1);
+}
+
+.nav-item a:hover {
+    background: rgba(217, 191, 191, 0.759);
+    border-style: none;
+}
+
+.nav-brand {
+    margin-left: -100px;
+}

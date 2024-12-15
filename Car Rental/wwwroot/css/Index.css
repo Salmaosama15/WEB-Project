@@ -1,0 +1,37 @@
+﻿
+
+.hero-section {
+    background-image: url('/images/pics/home.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar {
+    z-index: 3;
+}
+
+.nav-item a:hover {
+    background: rgba(217, 191, 191, 0.759);
+    border-style: none;
+}
+
+

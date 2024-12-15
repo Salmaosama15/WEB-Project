@@ -1,0 +1,33 @@
+﻿body {
+    background-image: url('/images/pics/78732a99b7ae6776ac9ecfcce6baa9ed.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+}
+
+.booking-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: black;
+}
+
+    .btn-primary:hover {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+    }
